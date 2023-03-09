@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import { useMobxStore } from './MobxStoreProvider';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useMobxStore } from "./MobxStoreProvider";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const LoginPage = observer(() => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const mobxStore = useMobxStore();
 
@@ -15,11 +16,12 @@ const LoginPage = observer(() => {
     event.preventDefault();
 
     // Check if the entered credentials are valid
-    if (username === 'admin' && password === 'admin') {
+    if (username === "admin" && password === "admin") {
       // Store the authorization token in Mobx storage
-      mobxStore.updateAuthorized(true)
-      mobxStore.updateAuthorizationToken('my_token');
-      navigate('/')
+      mobxStore.updateAuthorized(true);
+      mobxStore.updateAuthorizationToken("my_token");
+      Cookies.set("session_token", 'my_token', { expires: 1 }); // expires in 1 day
+      navigate("/");
     }
   };
 
@@ -28,11 +30,19 @@ const LoginPage = observer(() => {
       <form onSubmit={handleLogin}>
         <label>
           Username:
-          <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+          <input
+            type="text"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </label>
         <label>
           Password:
-          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
         </label>
         <button type="submit">Log In</button>
       </form>
