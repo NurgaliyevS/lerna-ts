@@ -1,11 +1,27 @@
-import React from 'react';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DynamicFormPage from "./DynamicFormPage";
+import LoginPage from "./LoginPage";
+import { MobxStoreProvider } from "./MobxStoreProvider";
+import ProtectedRoute from "./ProtectedRoute";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    </div>
+    <MobxStoreProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <DynamicFormPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </BrowserRouter>
+    </MobxStoreProvider>
   );
-}
+};
 
 export default App;
