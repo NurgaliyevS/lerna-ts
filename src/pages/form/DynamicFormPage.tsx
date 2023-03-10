@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import { useMobxStore } from "./MobxStoreProvider";
-import ExternalApi from "./ExternalApi";
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useMobxStore } from '../../store/MobxStoreProvider';
+import ExternalApi from '../../api/ExternalApi';
 
 const DynamicFormPage = observer(() => {
   const mobxStore = useMobxStore();
@@ -11,7 +11,7 @@ const DynamicFormPage = observer(() => {
     // Retrieve data from external API
     const fetchData = async () => {
       const apiData = await externalApi.getDataFromApi();
-      mobxStore.setDynamicFormData(apiData)
+      mobxStore.setDynamicFormData(apiData);
     };
     fetchData();
   }, []);
@@ -27,7 +27,7 @@ const DynamicFormPage = observer(() => {
     <div key={key}>
       <label>
         {key}:
-        <input type="text" value={parsedData.Labels[key]} readOnly />
+        <input type='text' value={parsedData.Labels[key]} readOnly />
       </label>
     </div>
   ));

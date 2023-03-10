@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DynamicFormPage from "./DynamicFormPage";
-import LoginPage from "./LoginPage";
-import { MobxStoreProvider } from "./MobxStoreProvider";
-import ProtectedRoute from "./ProtectedRoute";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DynamicFormPage from './pages/form/DynamicFormPage';
+import LoginPage from './pages/login/LoginPage';
+import { MobxStoreProvider } from './store/MobxStoreProvider';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
@@ -10,14 +10,14 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path='/'
             element={
               <ProtectedRoute>
                 <DynamicFormPage />
               </ProtectedRoute>
             }
           />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path='/login' element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </MobxStoreProvider>
