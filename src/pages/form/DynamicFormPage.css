@@ -1,0 +1,30 @@
+.dynamic-form {
+    margin: 50px auto;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .dynamic-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dynamic-form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .dynamic-form input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .dynamic-form input[type="text"]:read-only {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
