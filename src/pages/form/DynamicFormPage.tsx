@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useMobxStore } from '../../store/MobxStoreProvider';
 import ExternalApi from '../../api/ExternalApi';
+import './DynamicFormPage.css';
 
 const DynamicFormPage = observer(() => {
   const mobxStore = useMobxStore();
@@ -25,16 +26,16 @@ const DynamicFormPage = observer(() => {
 
   const formInputs = Object.keys(parsedData.Labels).map((key) => (
     <div key={key}>
-      <label>
+      <label className='dynamic-form label'>
         {key}:
-        <input type='text' value={parsedData.Labels[key]} readOnly />
+        <input type='text' value={parsedData.Labels[key]} readOnly className='dynamic-form input' />
       </label>
     </div>
   ));
 
   return (
-    <div>
-      <h1>Dynamic Form</h1>
+    <div className='dynamic-form'>
+      <h1 className='dynamic-form h1'>Dynamic Form</h1>
       {formInputs}
     </div>
   );
